@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-// 
+
 const recordRoute = require('./routes/record');
 const areaRoute = require('./routes/area');
 
