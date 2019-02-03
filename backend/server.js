@@ -12,6 +12,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
 app.use('/api/record', recordRoute);
 app.use('/api/area', areaRoute);
