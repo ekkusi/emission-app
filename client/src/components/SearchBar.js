@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
   handleInputFocusOut = (event) => {
     this.focusOutTimeout = setTimeout(() => {
       this.setState({areas: []})
-    }, 100)
+    }, 200)
   }
 
   handleFocusIn = (event) => {
