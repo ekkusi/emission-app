@@ -17,6 +17,7 @@ app.use('/api/record', recordRoute);
 app.use('/api/area', areaRoute);
 
 app.get("*", (req, res) => {
+  console.log(path.join(__dirname, "..", "client", "build", "index.html"));
   res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 
