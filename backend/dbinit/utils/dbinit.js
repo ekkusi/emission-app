@@ -1,8 +1,6 @@
-const { connectAdmin } = require('./../mongoose');
-const { Record } = require('./../models/record');
-const { Area } = require('./../models/area');
-
-connectAdmin();
+const mongoose = require('./../../mongoose');
+const { Record } = require('./../../models/record');
+const { Area } = require('./../../models/area');
 
 // Initialize database with given records. Records must be in form contain
 // attributes name, key, year, emission and population
@@ -46,8 +44,10 @@ const initializeDb = (records) => {
         return Promise.all([areaPromise, recordPromise]);
       }));
     }).then((records) => {
+      mongoose.connection.close()
       resolve(records);
     }).catch((e) => {
+      mongoose.connection.close()
       reject(e);
     });
   });

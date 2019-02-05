@@ -43,6 +43,8 @@ readFile(__dirname + '/data/world-emissions.xml').then((data) => {
   return initializeDb(records);
 }).then((records) => {
   console.log(`Added ${records.length} records`);
+  process.exit();
 }).catch((err) => {
   console.log('Something happened', err);
+  process.exit(1);
 });

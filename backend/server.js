@@ -1,15 +1,13 @@
-const { connectRead } = require('./mongoose')
+require('./mongoose')
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-
 const recordRoute = require('./routes/record');
 const areaRoute = require('./routes/area');
 
-connectRead();
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
@@ -18,7 +16,6 @@ app.use('/api/record', recordRoute);
 app.use('/api/area', areaRoute);
 
 app.get("*", (req, res) => {
-  console.log(path.join(__dirname, "..", "client", "build", "index.html"));
   res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 

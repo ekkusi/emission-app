@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    image: emission-app
+    build: ./
+    command: bash -c "node backend/dbinit/init-db.js && node backend/server.js"
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_URI: 'mongodb://mongo:27017/EmissionApp'
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

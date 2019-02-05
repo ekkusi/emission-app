@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import './App.css'
 
 import Form from './components/Form'
-import Chart from './components/Chart'
+import Result from './components/Result'
 
 class App extends Component {
   state = {
@@ -48,7 +48,7 @@ class App extends Component {
         // Fetch records for second area
         fetch(`/api/record/${secondArea}/${startYear}/${endYear}`).then((res) => {
           res.json().then((data) => {
-            // If query returns error, set only first area's records
+            // If second query returns error, set only first area's records
             if (data.error) {
               return this.setState({
                 records: [{
@@ -101,7 +101,11 @@ class App extends Component {
       <Container>
         <Wrapper>
           <Form areas={areas} onSubmit={this.onFormSubmit}/>
-          <Chart data={records} error={error} isByPopulation={isByPopulation}/>
+          {
+            error.length > 0 ? 
+              <Error>{error}</Error> : 
+              <Result data={records} isByPopulation={isByPopulation}/>
+          }
         </Wrapper>
       </Container>
     );
@@ -109,7 +113,7 @@ class App extends Component {
 }
 
 const Container = styled.div`
-  background: url("images/cloud.jpeg");
+  background: white;
   background-size: cover;
   background-positon: center center;
 
@@ -123,12 +127,15 @@ const Container = styled.div`
   min-height: 100vh;
 
   overflow: hidden;
+
+  @media (min-width: 600px) {
+    background: url("images/cloud.jpeg");
+  }
 `
 
 const Wrapper = styled.div`
   background-color: white;
-  box-shadow: 2px 3px 15px -5px black;
-
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,7 +145,17 @@ const Wrapper = styled.div`
 
   @media (min-width: 600px) {
     width: 600px;
+    box-shadow: 2px 3px 15px -5px black;
   }
+`
+
+const Error = styled.p`
+  margin: 1.5rem 1.5rem 2.5rem 1.5rem;
+
+  font-weight: bold;
+
+  text-align: center;
+  text-decoration: underline;
 `
 
 export default App;
