@@ -25,6 +25,8 @@ RUN npm run build
 
 WORKDIR /usr/src/app
 
-EXPOSE 5000
+ENV PORT 5000
+
+EXPOSE ${PORT}
 
 CMD ["node", "backend/server.js"]
