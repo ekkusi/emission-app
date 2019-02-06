@@ -102,9 +102,9 @@ class App extends Component {
         <Wrapper>
           <Form areas={areas} onSubmit={this.onFormSubmit}/>
           {
-            error.length > 0 ? 
-              <Error>{error}</Error> : 
-              <Result data={records} isByPopulation={isByPopulation}/>
+            error.length > 0
+              ? <Error>{error}</Error>
+              : <Result data={records} isByPopulation={isByPopulation}/>
           }
         </Wrapper>
       </Container>

@@ -5,24 +5,25 @@ import Chart from './Chart'
 
 const Result = ({ data, isByPopulation }) => (
   <Container>
-    {/* Render chart if first area has more than 1 record (second area doesn't affect rendering) */}
-    {data[0].records.length > 1 ? (
-      <Chart data={data} isByPopulation={isByPopulation} />
-    ) : (
-      // If there's only one record, render text output instead of chart
-      <SubContainer>
+    {/* Render chart if first area has more than 1 record (second area doesn't affect rendering) 
+        If there's only one record, render text output instead of chart */}
+    {data[0].records.length > 1 
+    ? <Chart data={data} isByPopulation={isByPopulation} /> 
+    : <SubContainer>
         {data.map((area) => (
           area.records.length > 0 &&
             <SingleYear key={area.name}>
               <h2>{area.name}</h2>
               <p>Year: {area.records[0].year}</p>
-              <p>Emission: {isByPopulation ? 
-                `${area.records[0].emission * 1000 / area.records[0].population} Ton CO2/person` : 
-                `${area.records[0].emission} Kilo ton CO2`}</p>
+              <p>Emission: 
+                {isByPopulation 
+                ? `${area.records[0].emission * 1000 / area.records[0].population} Ton CO2/person` 
+                : `${area.records[0].emission} Kilo ton CO2`}
+              </p>
             </SingleYear>
-          ))}
+        ))}
       </SubContainer>
-    )}
+    }
   </Container>
 );
 

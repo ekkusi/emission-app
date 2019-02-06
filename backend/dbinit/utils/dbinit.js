@@ -1,4 +1,4 @@
-const mongoose = require('./../../mongoose');
+const mongoose = require('./../../mongoose').connectAdmin();
 const { Record } = require('./../../models/record');
 const { Area } = require('./../../models/area');
 
