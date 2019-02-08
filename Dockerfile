@@ -3,15 +3,13 @@ FROM node:10.15-jessie
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN mkdir -p client && mkdir -p backend
+RUN mkdir client && mkdir backend
 
-WORKDIR /usr/src/app/backend
-
-COPY backend/package.json ./
+COPY package.json ./
 
 RUN npm install
 
-COPY backend ./
+COPY backend ./backend
 
 WORKDIR /usr/src/app/client
 
