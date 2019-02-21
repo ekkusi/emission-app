@@ -28,3 +28,4 @@ and from client-folder:
 * MERN-stack development
 * Parsing data from xml files
 * Creating graphs with React-libraries (Victory)
+* Basics of Docker
